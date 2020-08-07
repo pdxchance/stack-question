@@ -64,7 +64,7 @@ class QuestionAnswerTableViewCell: UITableViewCell {
         questionStackView.addArrangedSubview(bodyLabel)
         questionStackView.addArrangedSubview(answersButton)
         
-        questionStackView.anchor(top: self.topAnchor, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor)
+        questionStackView.anchor(top: self.topAnchor, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 30, right: 0))
 
     }
     

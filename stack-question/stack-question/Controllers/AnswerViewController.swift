@@ -31,6 +31,7 @@ class AnswerViewController: UIViewController {
         
         view.addSubview(answerTableView)
         
+        answerTableView.separatorStyle = .none
         answerTableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: reuseID)
         answerTableView.delegate = self
         answerTableView.dataSource = self
@@ -82,7 +83,6 @@ extension AnswerViewController : ScoreAndSaveProtocol{
         } else {
             score = question?.answers?[sender.tag].score
 
-            
             Loaf.init("Good answer! You earned some points :)", state: .custom(.init(backgroundColor: UIColor.QuestionColorTheme.primaryDarkBlue)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(){ [weak self] dismissalType in
                 
                 self?.navigationController?.popViewController(animated: true)

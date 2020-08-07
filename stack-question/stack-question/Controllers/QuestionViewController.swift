@@ -8,6 +8,7 @@
 
 import UIKit
 import Alamofire
+import Loaf
 
 class QuestionViewController: UIViewController {
     
@@ -71,9 +72,10 @@ class QuestionViewController: UIViewController {
         
         searchTextField.delegate = self
         
+        navigationItem.title = "StackQuestion"
         
         questionTableView.refreshControl = refreshControl
-        
+        questionTableView.separatorStyle = .none
         questionTableView.register(QuestionAnswerTableViewCell.self, forCellReuseIdentifier: reuseID)
         questionTableView.delegate = self
         questionTableView.dataSource = self
@@ -111,7 +113,7 @@ class QuestionViewController: UIViewController {
             }
             
         }) { (error) in
-            
+            Loaf.init("Sorry an error occured", sender: self).show()
         }
     }
     
