@@ -17,6 +17,20 @@
 		CE2B3C6E24DCB1B9002EA01B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */; };
 		CE955BAF24DCD417005CFD77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BAE24DCD417005CFD77 /* Colors.swift */; };
 		CE955BB124DCD502005CFD77 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB024DCD502005CFD77 /* UIViewExtension.swift */; };
+		CE955BB424DD7EF0005CFD77 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB324DD7EF0005CFD77 /* Config.swift */; };
+		CE955BB724DD9A9F005CFD77 /* QuestionAnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB624DD9A9F005CFD77 /* QuestionAnswerModel.swift */; };
+		CE955BBA24DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB924DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift */; };
+		CE955BBC24DDAC75005CFD77 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BBB24DDAC75005CFD77 /* StringExtensions.swift */; };
+		CE955BC324DDAE8C005CFD77 /* Lato-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE955BC124DDAE1B005CFD77 /* Lato-Thin.ttf */; };
+		CE955BC424DDAE8C005CFD77 /* Lato-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE955BC224DDAE29005CFD77 /* Lato-Black.ttf */; };
+		CE955BC524DDAE8C005CFD77 /* Lato-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE955BC024DDAE12005CFD77 /* Lato-Italic.ttf */; };
+		CE955BC624DDAE8C005CFD77 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE955BBE24DDADF8005CFD77 /* Lato-Regular.ttf */; };
+		CE955BC724DDAE8C005CFD77 /* Lato-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CE955BBF24DDAE03005CFD77 /* Lato-Bold.ttf */; };
+		CE955BC924DDB08D005CFD77 /* AnswerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BC824DDB08D005CFD77 /* AnswerViewController.swift */; };
+		CE955BCC24DDB4E0005CFD77 /* LoadControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BCB24DDB4E0005CFD77 /* LoadControllerProtocol.swift */; };
+		CE955BCE24DDBFB4005CFD77 /* AnswersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BCD24DDBFB4005CFD77 /* AnswersTableViewCell.swift */; };
+		CE955BD024DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BCF24DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift */; };
+		CE955BD424DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BD324DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +61,20 @@
 		CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		CE955BAE24DCD417005CFD77 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CE955BB024DCD502005CFD77 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
+		CE955BB324DD7EF0005CFD77 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		CE955BB624DD9A9F005CFD77 /* QuestionAnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerModel.swift; sourceTree = "<group>"; };
+		CE955BB924DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerTableViewCell.swift; sourceTree = "<group>"; };
+		CE955BBB24DDAC75005CFD77 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		CE955BBE24DDADF8005CFD77 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
+		CE955BBF24DDAE03005CFD77 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
+		CE955BC024DDAE12005CFD77 /* Lato-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Italic.ttf"; sourceTree = "<group>"; };
+		CE955BC124DDAE1B005CFD77 /* Lato-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Thin.ttf"; sourceTree = "<group>"; };
+		CE955BC224DDAE29005CFD77 /* Lato-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Black.ttf"; sourceTree = "<group>"; };
+		CE955BC824DDB08D005CFD77 /* AnswerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerViewController.swift; sourceTree = "<group>"; };
+		CE955BCB24DDB4E0005CFD77 /* LoadControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadControllerProtocol.swift; sourceTree = "<group>"; };
+		CE955BCD24DDBFB4005CFD77 /* AnswersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersTableViewCell.swift; sourceTree = "<group>"; };
+		CE955BCF24DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAndSaveProtocol.swift; sourceTree = "<group>"; };
+		CE955BD324DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateScoreAndSaveProtocol.swift; sourceTree = "<group>"; };
 		D90C1190EAC40F0643386FA1 /* Pods_stack_questionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stack_questionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -93,6 +121,11 @@
 		CE2B3C4724DCAFAD002EA01B /* stack-question */ = {
 			isa = PBXGroup;
 			children = (
+				CE955BCA24DDB4BC005CFD77 /* Protocols */,
+				CE955BBD24DDAD75005CFD77 /* Fonts */,
+				CE955BB824DDA4C3005CFD77 /* Cells */,
+				CE955BB524DD9A87005CFD77 /* Models */,
+				CE955BB224DD7ED7005CFD77 /* Config */,
 				CE955BAD24DCD3EA005CFD77 /* Extensions */,
 				CE2B3C6F24DCB71D002EA01B /* Controllers */,
 				CE2B3C4824DCAFAD002EA01B /* AppDelegate.swift */,
@@ -117,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */,
+				CE955BC824DDB08D005CFD77 /* AnswerViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -126,8 +160,56 @@
 			children = (
 				CE955BAE24DCD417005CFD77 /* Colors.swift */,
 				CE955BB024DCD502005CFD77 /* UIViewExtension.swift */,
+				CE955BBB24DDAC75005CFD77 /* StringExtensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CE955BB224DD7ED7005CFD77 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				CE955BB324DD7EF0005CFD77 /* Config.swift */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		CE955BB524DD9A87005CFD77 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				CE955BB624DD9A9F005CFD77 /* QuestionAnswerModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CE955BB824DDA4C3005CFD77 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CE955BB924DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift */,
+				CE955BCD24DDBFB4005CFD77 /* AnswersTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CE955BBD24DDAD75005CFD77 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CE955BC124DDAE1B005CFD77 /* Lato-Thin.ttf */,
+				CE955BC224DDAE29005CFD77 /* Lato-Black.ttf */,
+				CE955BC024DDAE12005CFD77 /* Lato-Italic.ttf */,
+				CE955BBE24DDADF8005CFD77 /* Lato-Regular.ttf */,
+				CE955BBF24DDAE03005CFD77 /* Lato-Bold.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CE955BCA24DDB4BC005CFD77 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				CE955BCB24DDB4E0005CFD77 /* LoadControllerProtocol.swift */,
+				CE955BCF24DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift */,
+				CE955BD324DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		D59B2A035300C5DF18C285D2 /* Frameworks */ = {
@@ -234,6 +316,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE955BC324DDAE8C005CFD77 /* Lato-Thin.ttf in Resources */,
+				CE955BC424DDAE8C005CFD77 /* Lato-Black.ttf in Resources */,
+				CE955BC524DDAE8C005CFD77 /* Lato-Italic.ttf in Resources */,
+				CE955BC624DDAE8C005CFD77 /* Lato-Regular.ttf in Resources */,
+				CE955BC724DDAE8C005CFD77 /* Lato-Bold.ttf in Resources */,
 				CE2B3C5824DCAFB0002EA01B /* LaunchScreen.storyboard in Resources */,
 				CE2B3C5524DCAFB0002EA01B /* Assets.xcassets in Resources */,
 			);
@@ -317,11 +404,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE955BB724DD9A9F005CFD77 /* QuestionAnswerModel.swift in Sources */,
+				CE955BCC24DDB4E0005CFD77 /* LoadControllerProtocol.swift in Sources */,
 				CE955BB124DCD502005CFD77 /* UIViewExtension.swift in Sources */,
+				CE955BCE24DDBFB4005CFD77 /* AnswersTableViewCell.swift in Sources */,
+				CE955BC924DDB08D005CFD77 /* AnswerViewController.swift in Sources */,
 				CE2B3C5324DCAFAD002EA01B /* stack_question.xcdatamodeld in Sources */,
+				CE955BBC24DDAC75005CFD77 /* StringExtensions.swift in Sources */,
 				CE955BAF24DCD417005CFD77 /* Colors.swift in Sources */,
 				CE2B3C6E24DCB1B9002EA01B /* QuestionViewController.swift in Sources */,
+				CE955BD024DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift in Sources */,
+				CE955BBA24DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift in Sources */,
 				CE2B3C4924DCAFAD002EA01B /* AppDelegate.swift in Sources */,
+				CE955BD424DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift in Sources */,
+				CE955BB424DD7EF0005CFD77 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
