@@ -1,16 +1,20 @@
 PODS:
   - Alamofire (5.2.2)
+  - Loaf (0.5.0)
 
 DEPENDENCIES:
   - Alamofire (~> 5.2)
+  - Loaf
 
 SPEC REPOS:
   trunk:
     - Alamofire
+    - Loaf
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
+  Loaf: 0800b444431366bc395d54267975d4ad4ad5c99c
 
-PODFILE CHECKSUM: 5d4bb76055050f96cf0adbc1eea3937e1149ded9
+PODFILE CHECKSUM: 0851a32cc1b14019b433dac0a58c05ccb76d06fc
 
 COCOAPODS: 1.9.1

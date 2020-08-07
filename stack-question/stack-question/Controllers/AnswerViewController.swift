@@ -1,0 +1,98 @@
+//
+//  AnswerViewController.swift
+//  stack-question
+//
+//  Created by Deanne Chance on 8/7/20.
+//  Copyright © 2020 Deanne Chance. All rights reserved.
+//
+
+import UIKit
+import Loaf
+
+class AnswerViewController: UIViewController {
+    
+    weak var delegate : UpdateScoreAndSaveProtocol?
+    
+    let reuseID = "reuseID"
+
+    var question: Question?
+    
+    let answerTableView : UITableView = {
+        let answerTableView = UITableView()
+        answerTableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return answerTableView
+    }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        view.backgroundColor = UIColor.QuestionColorTheme.white
+        
+        view.addSubview(answerTableView)
+        
+        answerTableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: reuseID)
+        answerTableView.delegate = self
+        answerTableView.dataSource = self
+        
+        answerTableView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
+        
+        answerTableView.reloadData()
+    }
+
+}
+
+extension AnswerViewController : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return question?.answers?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: reuseID, for: indexPath) as! AnswerTableViewCell
+        
+        let answer = question?.answers?[indexPath.row]
+        
+        cell.delegate = self
+        cell.answersButton.tag = indexPath.row
+        
+        cell.titleLabel.text = question?.title
+        cell.answerLabel.text = answer?.body?.htmlToString
+        
+        
+        return cell
+    }
+}
+
+extension AnswerViewController : ScoreAndSaveProtocol{
+    @objc func scoreAndSaveAnswer(sender : UIButton) {
+
+        var score : Int? = 0
+        
+        let pickedAnswer = question?.answers?[sender.tag].answerID
+        let correctAnswer = question?.acceptedAnswerID
+                
+        if pickedAnswer != correctAnswer {
+            score = -1
+            
+            Loaf.init("Sorry you guessed wrong :( ", state: .custom(.init(backgroundColor: UIColor.red)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show() { [weak self]  dismissalType in
+                self?.navigationController?.popViewController(animated: true)
+
+                self?.delegate?.updateScoreAndSave(score: score!, question: (self?.question)!, selectedAnswer: (self?.question?.answers?[sender.tag])!)
+                }
+        } else {
+            score = question?.answers?[sender.tag].score
+
+            
+            Loaf.init("Good answer! You earned some points :)", state: .custom(.init(backgroundColor: UIColor.QuestionColorTheme.primaryDarkBlue)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(){ [weak self] dismissalType in
+                
+                self?.navigationController?.popViewController(animated: true)
+
+                self?.delegate?.updateScoreAndSave(score: score!, question: (self?.question)!, selectedAnswer: (self?.question?.answers?[sender.tag])!)
+            
+            }
+        }
+    
+        
+        
+    }
+}
