@@ -125,7 +125,7 @@
 				CE955BBD24DDAD75005CFD77 /* Fonts */,
 				CE955BB824DDA4C3005CFD77 /* Cells */,
 				CE955BB524DD9A87005CFD77 /* Models */,
-				CE955BB224DD7ED7005CFD77 /* Config */,
+				CE955BB224DD7ED7005CFD77 /* Network */,
 				CE955BAD24DCD3EA005CFD77 /* Extensions */,
 				CE2B3C6F24DCB71D002EA01B /* Controllers */,
 				CE2B3C4824DCAFAD002EA01B /* AppDelegate.swift */,
@@ -165,12 +165,12 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		CE955BB224DD7ED7005CFD77 /* Config */ = {
+		CE955BB224DD7ED7005CFD77 /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				CE955BB324DD7EF0005CFD77 /* Api.swift */,
 			);
-			path = Config;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		CE955BB524DD9A87005CFD77 /* Models */ = {
