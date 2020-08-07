@@ -10,7 +10,9 @@ import Foundation
 import Alamofire
 
 let API_KEY = "u225vZYSBzkUrYVt61gaqg(("
-let QuestionAnswerQueryUrl = "https://api.stackexchange.com//2.2/search/advanced?site=stackoverflow&filter=!5-dmZUPQyv_-cPv(D30VgU)hf1C)YXwx*dvVom&accepted=true&answers=2"
+
+let baseURL = "https://api.stackexchange.com//2.2"
+let searchFilter = "/search/advanced?site=stackoverflow&filter=!5-dmZUPQyv_-cPv(D30VgU)hf1C)YXwx*dvVom&accepted=true&answers=2"
 
 func requestGET(_ strURL: String, params: [String : Any]?, success:@escaping (Data) -> Void, failure:@escaping (Error) -> Void) {
     

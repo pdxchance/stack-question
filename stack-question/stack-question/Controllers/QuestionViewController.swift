@@ -99,7 +99,7 @@ class QuestionViewController: UIViewController {
     @objc func loadData() {
         
         let query = "&tagged=" + searchTextField.text!
-        let url = QuestionAnswerQueryUrl + query
+        let url = baseURL + searchFilter + query
                 
         requestGET(url, params: nil, success: { [weak self ] (jsonData) in
             
