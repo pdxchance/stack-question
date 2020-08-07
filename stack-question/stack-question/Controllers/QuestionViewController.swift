@@ -13,7 +13,7 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.QuestionColorTheme.primaryDarkBlue
     }
 
 }
