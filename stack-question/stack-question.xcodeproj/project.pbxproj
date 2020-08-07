@@ -15,6 +15,8 @@
 		CE2B3C5824DCAFB0002EA01B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE2B3C5624DCAFB0002EA01B /* LaunchScreen.storyboard */; };
 		CE2B3C6324DCAFB0002EA01B /* stack_questionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B3C6224DCAFB0002EA01B /* stack_questionTests.swift */; };
 		CE2B3C6E24DCB1B9002EA01B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */; };
+		CE955BAF24DCD417005CFD77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BAE24DCD417005CFD77 /* Colors.swift */; };
+		CE955BB124DCD502005CFD77 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB024DCD502005CFD77 /* UIViewExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +45,8 @@
 		CE2B3C6224DCAFB0002EA01B /* stack_questionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = stack_questionTests.swift; sourceTree = "<group>"; };
 		CE2B3C6424DCAFB0002EA01B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		CE955BAE24DCD417005CFD77 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		CE955BB024DCD502005CFD77 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		D90C1190EAC40F0643386FA1 /* Pods_stack_questionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stack_questionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -89,6 +93,7 @@
 		CE2B3C4724DCAFAD002EA01B /* stack-question */ = {
 			isa = PBXGroup;
 			children = (
+				CE955BAD24DCD3EA005CFD77 /* Extensions */,
 				CE2B3C6F24DCB71D002EA01B /* Controllers */,
 				CE2B3C4824DCAFAD002EA01B /* AppDelegate.swift */,
 				CE2B3C5424DCAFB0002EA01B /* Assets.xcassets */,
@@ -114,6 +119,15 @@
 				CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		CE955BAD24DCD3EA005CFD77 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CE955BAE24DCD417005CFD77 /* Colors.swift */,
+				CE955BB024DCD502005CFD77 /* UIViewExtension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		D59B2A035300C5DF18C285D2 /* Frameworks */ = {
@@ -303,7 +317,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE955BB124DCD502005CFD77 /* UIViewExtension.swift in Sources */,
 				CE2B3C5324DCAFAD002EA01B /* stack_question.xcdatamodeld in Sources */,
+				CE955BAF24DCD417005CFD77 /* Colors.swift in Sources */,
 				CE2B3C6E24DCB1B9002EA01B /* QuestionViewController.swift in Sources */,
 				CE2B3C4924DCAFAD002EA01B /* AppDelegate.swift in Sources */,
 			);
