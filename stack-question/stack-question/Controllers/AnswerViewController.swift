@@ -27,16 +27,20 @@ class AnswerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // config initial view
         view.backgroundColor = UIColor.QuestionColorTheme.white
-        
-        view.addSubview(answerTableView)
-        
+                
+        // configure tableView
+        answerTableView.separatorStyle = .none
         answerTableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: reuseID)
         answerTableView.delegate = self
         answerTableView.dataSource = self
         
+        // add subviews and constraints
+        view.addSubview(answerTableView)
         answerTableView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
+        // refresh
         answerTableView.reloadData()
     }
 
@@ -66,15 +70,20 @@ extension AnswerViewController : UITableViewDelegate, UITableViewDataSource {
 extension AnswerViewController : ScoreAndSaveProtocol{
     @objc func scoreAndSaveAnswer(sender : UIButton) {
 
+        // compute the scord
         var score : Int? = 0
         
+        // guard against multiple answers
+        answerTableView.isUserInteractionEnabled = false
+        
+        //verify the answer
         let pickedAnswer = question?.answers?[sender.tag].answerID
         let correctAnswer = question?.acceptedAnswerID
                 
         if pickedAnswer != correctAnswer {
             score = -1
             
-            Loaf.init("Sorry you guessed wrong :( ", state: .custom(.init(backgroundColor: UIColor.red)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show() { [weak self]  dismissalType in
+            Loaf.init("Sorry you guessed wrong :( ", state: .custom(.init(backgroundColor: UIColor.red)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short) { [weak self]  dismissalType in
                 self?.navigationController?.popViewController(animated: true)
 
                 self?.delegate?.updateScoreAndSave(score: score!, question: (self?.question)!, selectedAnswer: (self?.question?.answers?[sender.tag])!)
@@ -82,8 +91,7 @@ extension AnswerViewController : ScoreAndSaveProtocol{
         } else {
             score = question?.answers?[sender.tag].score
 
-            
-            Loaf.init("Good answer! You earned some points :)", state: .custom(.init(backgroundColor: UIColor.QuestionColorTheme.primaryDarkBlue)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(){ [weak self] dismissalType in
+            Loaf.init("Good answer! You earned some points :)", state: .custom(.init(backgroundColor: UIColor.QuestionColorTheme.primaryDarkBlue)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short){ [weak self] dismissalType in
                 
                 self?.navigationController?.popViewController(animated: true)
 

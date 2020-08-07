@@ -69,7 +69,7 @@ class AnswerTableViewCell: UITableViewCell {
         
         titleLabel.anchor(top: self.topAnchor, bottom: nil, leading: self.leadingAnchor, trailing: self.trailingAnchor)
         
-        answerStackView.anchor(top: titleLabel.bottomAnchor, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor)
+        answerStackView.anchor(top: titleLabel.bottomAnchor, bottom: self.bottomAnchor, leading: self.leadingAnchor, trailing: self.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 30, right: 0))
 
     }
     
