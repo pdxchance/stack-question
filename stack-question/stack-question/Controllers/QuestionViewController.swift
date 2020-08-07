@@ -104,7 +104,9 @@ class QuestionViewController: UIViewController {
     @objc func loadData() {
         
         //set up search query, filter is baked in the API, see docs
-        let query = "&tagged=" + searchTextField.text!
+        let searchText = searchTextField.text ?? ""
+        
+        let query = "&tagged=" + searchText 
         let url = baseURL + searchFilter + query
                 
         requestGET(url, params: nil, success: { [weak self ] (jsonData) in
