@@ -17,7 +17,7 @@
 		CE2B3C6E24DCB1B9002EA01B /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */; };
 		CE955BAF24DCD417005CFD77 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BAE24DCD417005CFD77 /* Colors.swift */; };
 		CE955BB124DCD502005CFD77 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB024DCD502005CFD77 /* UIViewExtension.swift */; };
-		CE955BB424DD7EF0005CFD77 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB324DD7EF0005CFD77 /* Config.swift */; };
+		CE955BB424DD7EF0005CFD77 /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB324DD7EF0005CFD77 /* Api.swift */; };
 		CE955BB724DD9A9F005CFD77 /* QuestionAnswerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB624DD9A9F005CFD77 /* QuestionAnswerModel.swift */; };
 		CE955BBA24DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BB924DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift */; };
 		CE955BBC24DDAC75005CFD77 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BBB24DDAC75005CFD77 /* StringExtensions.swift */; };
@@ -61,7 +61,7 @@
 		CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
 		CE955BAE24DCD417005CFD77 /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		CE955BB024DCD502005CFD77 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		CE955BB324DD7EF0005CFD77 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		CE955BB324DD7EF0005CFD77 /* Api.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		CE955BB624DD9A9F005CFD77 /* QuestionAnswerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerModel.swift; sourceTree = "<group>"; };
 		CE955BB924DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		CE955BBB24DDAC75005CFD77 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
@@ -168,7 +168,7 @@
 		CE955BB224DD7ED7005CFD77 /* Config */ = {
 			isa = PBXGroup;
 			children = (
-				CE955BB324DD7EF0005CFD77 /* Config.swift */,
+				CE955BB324DD7EF0005CFD77 /* Api.swift */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -417,7 +417,7 @@
 				CE955BBA24DDA4EB005CFD77 /* QuestionAnswerTableViewCell.swift in Sources */,
 				CE2B3C4924DCAFAD002EA01B /* AppDelegate.swift in Sources */,
 				CE955BD424DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift in Sources */,
-				CE955BB424DD7EF0005CFD77 /* Config.swift in Sources */,
+				CE955BB424DD7EF0005CFD77 /* Api.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
