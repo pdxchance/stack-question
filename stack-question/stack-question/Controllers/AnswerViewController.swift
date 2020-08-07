@@ -27,17 +27,20 @@ class AnswerViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // config initial view
         view.backgroundColor = UIColor.QuestionColorTheme.white
-        
-        view.addSubview(answerTableView)
-        
+                
+        // configure tableView
         answerTableView.separatorStyle = .none
         answerTableView.register(AnswerTableViewCell.self, forCellReuseIdentifier: reuseID)
         answerTableView.delegate = self
         answerTableView.dataSource = self
         
+        // add subviews and constraints
+        view.addSubview(answerTableView)
         answerTableView.anchor(top: view.topAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
+        // refresh
         answerTableView.reloadData()
     }
 

@@ -45,6 +45,7 @@ class QuestionViewController: UIViewController {
         searchTextField.font = UIFont(name: "Lato-Regular", size: 32.0)
         searchTextField.autocorrectionType = .no
         searchTextField.autocapitalizationType = .none
+        searchTextField.textAlignment = .center
         searchTextField.backgroundColor = UIColor.QuestionColorTheme.white
         searchTextField.borderStyle = .roundedRect
         searchTextField.translatesAutoresizingMaskIntoConstraints = false
@@ -106,15 +107,19 @@ class QuestionViewController: UIViewController {
         //set up search query, filter is baked in the API, see docs
         let searchText = searchTextField.text ?? ""
         
-        let query = "&tagged=" + searchText 
+        let query = "&tagged=" + searchText
         let url = baseURL + searchFilter + query
                 
         requestGET(url, params: nil, success: { [weak self ] (jsonData) in
             
+            // reset results
             self?.data = nil
+            
+            // decode payload
             self?.data = try? JSONDecoder().decode(QuestionAnswerModel.self, from: jsonData
             )
             
+            // update UI
             DispatchQueue.main.async {
                 self?.refreshControl.endRefreshing()
                 self?.questionTableView.reloadData()
@@ -176,7 +181,7 @@ extension QuestionViewController : LoadControllerProtocol {
 extension QuestionViewController : UpdateScoreAndSaveProtocol {
     func updateScoreAndSave(score: Int, question: Question, selectedAnswer: Answer) {
         
-        //remove answered questions
+        //remove answered questions but kinda pointless because a reload could bring it back
         if let array = data?.items {
             if let offset = array.firstIndex(where: {$0.questionID == question.questionID}) {
                 data?.items?.remove(at: offset)
