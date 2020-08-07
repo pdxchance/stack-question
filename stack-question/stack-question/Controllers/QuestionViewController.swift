@@ -62,7 +62,9 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.title = "StackQuestion"
+        let logo = UIImage(named: "logo.png")
+        let imageView = UIImageView(image:logo)
+        self.navigationItem.titleView = imageView
         
         view.backgroundColor = UIColor.QuestionColorTheme.white
         
