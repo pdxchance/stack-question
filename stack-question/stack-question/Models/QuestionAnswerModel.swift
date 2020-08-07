@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - QuestionAnswerModel
 struct QuestionAnswerModel: Codable {
-    let items: [Question]?
+    var items: [Question]?
     let hasMore: Bool?
     let quotaMax, quotaRemaining: Int?
 

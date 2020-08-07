@@ -30,6 +30,7 @@ class QuestionViewController: UIViewController {
     let scoreLabel: UILabel = {
         let scoreLabel = UILabel()
         scoreLabel.text = "Score : 0"
+        scoreLabel.font = UIFont(name: "Lato-Bold", size: 32.0)
         scoreLabel.textAlignment = .center
         scoreLabel.textColor = UIColor.QuestionColorTheme.primaryDarkBlue
         scoreLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -41,6 +42,7 @@ class QuestionViewController: UIViewController {
        let searchTextField = UITextField()
         searchTextField.placeholder = "Filter questions by topic e.g. Swift"
         searchTextField.text = "swift"
+        searchTextField.font = UIFont(name: "Lato-Regular", size: 32.0)
         searchTextField.autocorrectionType = .no
         searchTextField.autocapitalizationType = .none
         searchTextField.backgroundColor = UIColor.QuestionColorTheme.white
@@ -60,20 +62,16 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationItem.title = "StackQuestion"
+        
         view.backgroundColor = UIColor.QuestionColorTheme.white
         
-        // Style the nav bar
         navigationController?.navigationBar.barTintColor = UIColor.QuestionColorTheme.primaryDarkBlue
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
-        view.addSubview(scoreLabel)
-        view.addSubview(searchTextField)
-        view.addSubview(questionTableView)
         
         searchTextField.delegate = self
-        
-        navigationItem.title = "StackQuestion"
-        
+                
         questionTableView.refreshControl = refreshControl
         questionTableView.separatorStyle = .none
         questionTableView.register(QuestionAnswerTableViewCell.self, forCellReuseIdentifier: reuseID)
@@ -85,8 +83,11 @@ class QuestionViewController: UIViewController {
         view.addGestureRecognizer(tap)
         view.isUserInteractionEnabled = true
         
-        let guide = self.view.safeAreaLayoutGuide
+        view.addSubview(scoreLabel)
+        view.addSubview(searchTextField)
+        view.addSubview(questionTableView)
         
+        let guide = self.view.safeAreaLayoutGuide
         scoreLabel.anchor(top: guide.topAnchor , bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
         searchTextField.anchor(top: scoreLabel.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor)
@@ -166,9 +167,19 @@ extension QuestionViewController : LoadControllerProtocol {
 extension QuestionViewController : UpdateScoreAndSaveProtocol {
     func updateScoreAndSave(score: Int, question: Question, selectedAnswer: Answer) {
         
+        //remove answered questions
+        if let array = data?.items {
+            if let offset = array.firstIndex(where: {$0.questionID == question.questionID}) {
+                data?.items?.remove(at: offset)
+                questionTableView.reloadData()
+            }
+        }
+
         //update the score
         self.score += score
         scoreLabel.text = "Score: " + String(self.score)
+        
+        //save to coredata
         
     }
 }
