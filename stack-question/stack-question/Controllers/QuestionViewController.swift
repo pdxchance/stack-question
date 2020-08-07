@@ -62,29 +62,30 @@ class QuestionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // setup view
         let logo = UIImage(named: "logo.png")
         let imageView = UIImageView(image:logo)
         self.navigationItem.titleView = imageView
-        
         view.backgroundColor = UIColor.QuestionColorTheme.white
-        
         navigationController?.navigationBar.barTintColor = UIColor.QuestionColorTheme.primaryDarkBlue
         navigationController?.navigationBar.setValue(true, forKey: "hidesShadow")
         
-        
+        // for queries
         searchTextField.delegate = self
                 
+        // style the question table
         questionTableView.refreshControl = refreshControl
         questionTableView.separatorStyle = .none
         questionTableView.register(QuestionAnswerTableViewCell.self, forCellReuseIdentifier: reuseID)
         questionTableView.delegate = self
         questionTableView.dataSource = self
         
-        
+        // used to dismiss keyboard on query
         let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tap)
         view.isUserInteractionEnabled = true
         
+        // add views and set constraints
         view.addSubview(scoreLabel)
         view.addSubview(searchTextField)
         view.addSubview(questionTableView)
@@ -96,11 +97,13 @@ class QuestionViewController: UIViewController {
         
         questionTableView.anchor(top: searchTextField.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
+        //intial grab of data
         loadData()
     }
     
     @objc func loadData() {
         
+        //set up search query, filter is baked in the API, see docs
         let query = "&tagged=" + searchTextField.text!
         let url = baseURL + searchFilter + query
                 
@@ -138,6 +141,8 @@ extension QuestionViewController: UITableViewDelegate, UITableViewDataSource {
         let question = self.data?.items?[indexPath.row]
 
         cell.delegate = self
+        
+        //for convience, storing the current question with the button on the tag param
         cell.answersButton.tag = indexPath.row
         cell.selectionStyle = .none
         cell.titleLabel.text = question?.title?.htmlToString
@@ -149,16 +154,16 @@ extension QuestionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }
-    
-    
-    
 }
 
 extension QuestionViewController : LoadControllerProtocol {
     func loadAnswersController(sender: UIButton) {
         
+        // current question is stored on the tag param when cell is loaded
         let question = data?.items?[sender.tag]
         
+        
+        //inject the controller and load
         let controller = AnswerViewController()
         controller.question = question
         controller.delegate = self

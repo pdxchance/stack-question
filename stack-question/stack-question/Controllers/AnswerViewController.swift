@@ -67,15 +67,20 @@ extension AnswerViewController : UITableViewDelegate, UITableViewDataSource {
 extension AnswerViewController : ScoreAndSaveProtocol{
     @objc func scoreAndSaveAnswer(sender : UIButton) {
 
+        // compute the scord
         var score : Int? = 0
         
+        // guard against multiple answers
+        answerTableView.isUserInteractionEnabled = false
+        
+        //verify the answer
         let pickedAnswer = question?.answers?[sender.tag].answerID
         let correctAnswer = question?.acceptedAnswerID
                 
         if pickedAnswer != correctAnswer {
             score = -1
             
-            Loaf.init("Sorry you guessed wrong :( ", state: .custom(.init(backgroundColor: UIColor.red)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show() { [weak self]  dismissalType in
+            Loaf.init("Sorry you guessed wrong :( ", state: .custom(.init(backgroundColor: UIColor.red)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short) { [weak self]  dismissalType in
                 self?.navigationController?.popViewController(animated: true)
 
                 self?.delegate?.updateScoreAndSave(score: score!, question: (self?.question)!, selectedAnswer: (self?.question?.answers?[sender.tag])!)
@@ -83,7 +88,7 @@ extension AnswerViewController : ScoreAndSaveProtocol{
         } else {
             score = question?.answers?[sender.tag].score
 
-            Loaf.init("Good answer! You earned some points :)", state: .custom(.init(backgroundColor: UIColor.QuestionColorTheme.primaryDarkBlue)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(){ [weak self] dismissalType in
+            Loaf.init("Good answer! You earned some points :)", state: .custom(.init(backgroundColor: UIColor.QuestionColorTheme.primaryDarkBlue)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short){ [weak self] dismissalType in
                 
                 self?.navigationController?.popViewController(animated: true)
 
