@@ -126,7 +126,8 @@ class QuestionViewController: UIViewController {
             }
             
         }) { (error) in
-            Loaf.init("Sorry an error occured", sender: self).show()
+            self.refreshControl.endRefreshing()
+            Loaf.init("Sorry an error occured", state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
     }
     
@@ -149,7 +150,7 @@ extension QuestionViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.delegate = self
         
-        //for convience, storing the current question with the button on the tag param
+        //for convience, storing the current question index with the button on the tag param
         cell.answersButton.tag = indexPath.row
         cell.selectionStyle = .none
         cell.titleLabel.text = question?.title?.htmlToString
@@ -167,13 +168,12 @@ extension QuestionViewController : LoadControllerProtocol {
     func loadAnswersController(sender: UIButton) {
         
         // current question is stored on the tag param when cell is loaded
-        let question = data?.items?[sender.tag]
-        
+        guard let question = data?.items?[sender.tag] else {
+            return
+        }
         
         //inject the controller and load
-        let controller = AnswerViewController()
-        controller.question = question
-        controller.delegate = self
+        let controller = AnswerViewController(question: question, delegate: self)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -186,6 +186,7 @@ extension QuestionViewController : UpdateScoreAndSaveProtocol {
             if let offset = array.firstIndex(where: {$0.questionID == question.questionID}) {
                 data?.items?.remove(at: offset)
                 questionTableView.reloadData()
+                questionTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             }
         }
 
