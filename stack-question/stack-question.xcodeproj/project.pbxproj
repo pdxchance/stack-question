@@ -31,6 +31,8 @@
 		CE955BCE24DDBFB4005CFD77 /* AnswersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BCD24DDBFB4005CFD77 /* AnswersTableViewCell.swift */; };
 		CE955BD024DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BCF24DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift */; };
 		CE955BD424DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BD324DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift */; };
+		CE955BD624DEFB97005CFD77 /* CustomTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BD524DEFB97005CFD77 /* CustomTabController.swift */; };
+		CE955BD824DEFCD8005CFD77 /* GuessesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE955BD724DEFCD8005CFD77 /* GuessesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +77,8 @@
 		CE955BCD24DDBFB4005CFD77 /* AnswersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswersTableViewCell.swift; sourceTree = "<group>"; };
 		CE955BCF24DDC0BA005CFD77 /* ScoreAndSaveProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreAndSaveProtocol.swift; sourceTree = "<group>"; };
 		CE955BD324DDD4F3005CFD77 /* UpdateScoreAndSaveProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateScoreAndSaveProtocol.swift; sourceTree = "<group>"; };
+		CE955BD524DEFB97005CFD77 /* CustomTabController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabController.swift; sourceTree = "<group>"; };
+		CE955BD724DEFCD8005CFD77 /* GuessesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuessesViewController.swift; sourceTree = "<group>"; };
 		D90C1190EAC40F0643386FA1 /* Pods_stack_questionTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_stack_questionTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -151,6 +155,8 @@
 			children = (
 				CE2B3C6D24DCB1B9002EA01B /* QuestionViewController.swift */,
 				CE955BC824DDB08D005CFD77 /* AnswerViewController.swift */,
+				CE955BD524DEFB97005CFD77 /* CustomTabController.swift */,
+				CE955BD724DEFCD8005CFD77 /* GuessesViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -406,7 +412,9 @@
 			files = (
 				CE955BB724DD9A9F005CFD77 /* QuestionAnswerModel.swift in Sources */,
 				CE955BCC24DDB4E0005CFD77 /* LoadControllerProtocol.swift in Sources */,
+				CE955BD624DEFB97005CFD77 /* CustomTabController.swift in Sources */,
 				CE955BB124DCD502005CFD77 /* UIViewExtension.swift in Sources */,
+				CE955BD824DEFCD8005CFD77 /* GuessesViewController.swift in Sources */,
 				CE955BCE24DDBFB4005CFD77 /* AnswersTableViewCell.swift in Sources */,
 				CE955BC924DDB08D005CFD77 /* AnswerViewController.swift in Sources */,
 				CE2B3C5324DCAFAD002EA01B /* stack_question.xcdatamodeld in Sources */,
