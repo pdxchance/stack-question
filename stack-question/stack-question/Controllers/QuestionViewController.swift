@@ -183,7 +183,7 @@ extension QuestionViewController: UITableViewDelegate, UITableViewDataSource {
 extension QuestionViewController : LoadControllerProtocol {
     func loadAnswersController(sender: UIButton) {
         
-        // current question is stored on the tag param when cell is loaded
+        // current question index is stored on the tag param when cell is loaded
         guard let question = data?.items?[sender.tag] else {
             return
         }
@@ -229,6 +229,7 @@ extension QuestionViewController {
         
         UserDefaults.standard.set(self.score, forKey: defaultsUpdatedScoreTag)
     }
+    
     func saveQuestionAndAnswer(question: Question, selectedAnswer: Answer) {
         
         guard let questionEntity = NSEntityDescription.entity(forEntityName: "Guesses", in: managedObjectContext) else { return }

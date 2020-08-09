@@ -8,6 +8,9 @@
 
 import Foundation
 
+// Quick modeling from https://quicktype.io/
+
+
 // MARK: - QuestionAnswerModel
 struct QuestionAnswerModel: Codable {
     var items: [Question]?
