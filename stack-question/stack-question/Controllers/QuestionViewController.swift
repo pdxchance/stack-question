@@ -9,8 +9,11 @@
 import UIKit
 import Alamofire
 import Loaf
+import CoreData
 
 class QuestionViewController: UIViewController {
+    
+    var managedObjectContext: NSManagedObjectContext
     
     let reuseID = "reuseID"
     
@@ -102,6 +105,15 @@ class QuestionViewController: UIViewController {
         loadData()
     }
     
+    init(managedObjectContext : NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @objc func loadData() {
         
         //set up search query, filter is baked in the API, see docs
@@ -178,8 +190,8 @@ extension QuestionViewController : LoadControllerProtocol {
     }
 }
 
-extension QuestionViewController : UpdateScoreAndSaveProtocol {
-    func updateScoreAndSave(score: Int, question: Question, selectedAnswer: Answer) {
+extension QuestionViewController : UpdateScoreBoardAndSaveProtocol {
+    func updateScoreBoardAndSave(score: Int, question: Question, selectedAnswer: Answer) {
         
         //remove answered questions but kinda pointless because a reload could bring it back
         if let array = data?.items {

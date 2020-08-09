@@ -11,7 +11,7 @@ import Loaf
 
 class AnswerViewController: UIViewController {
     
-    weak var delegate : UpdateScoreAndSaveProtocol?
+    weak var delegate : UpdateScoreBoardAndSaveProtocol?
     
     let reuseID = "reuseID"
 
@@ -24,7 +24,7 @@ class AnswerViewController: UIViewController {
         return answerTableView
     }()
     
-    init(question: Question, delegate : UpdateScoreAndSaveProtocol) {
+    init(question: Question, delegate : UpdateScoreBoardAndSaveProtocol) {
         self.question = question
         self.delegate = delegate
         super.init(nibName: nil, bundle: nil)
@@ -111,11 +111,11 @@ extension AnswerViewController : ScoreAndSaveProtocol{
         if pickedAnswer != correctAnswer {
             score = -1
             
-            let alert = UIAlertController(title: "Incorrect! Answer Shown", message: answer?.body?.htmlToString, preferredStyle: .alert)
+            let alert = UIAlertController(title: "Incorrect!\nAnswer Shown", message: answer?.body?.htmlToString, preferredStyle: .alert)
             let alertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
 
-                self.delegate?.updateScoreAndSave(score: score, question: question, selectedAnswer: selectedAnswer)
+                self.delegate?.updateScoreBoardAndSave(score: score, question: question, selectedAnswer: selectedAnswer)
             }
             alert.addAction(alertAction)
             present(alert, animated: true)
@@ -128,7 +128,7 @@ extension AnswerViewController : ScoreAndSaveProtocol{
             let alertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
                 self.navigationController?.popViewController(animated: true)
 
-                self.delegate?.updateScoreAndSave(score: score, question: question, selectedAnswer: selectedAnswer)
+                self.delegate?.updateScoreBoardAndSave(score: score, question: question, selectedAnswer: selectedAnswer)
             }
             alert.addAction(alertAction)
             present(alert, animated: true)
