@@ -219,7 +219,7 @@ extension QuestionViewController {
         
         let guess = NSManagedObject(entity: questionEntity, insertInto: managedObjectContext)
         
-        guess.setValue(question.title, forKey: "questionTitle")
+        guess.setValue(question.title?.htmlToString, forKey: "questionTitle")
         guess.setValue(question.body?.htmlToString, forKey: "questionBody")
         guess.setValue(selectedAnswer.body?.htmlToString, forKey: "questionAnswer")
         
