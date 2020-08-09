@@ -207,6 +207,35 @@ extension QuestionViewController : UpdateScoreBoardAndSaveProtocol {
         scoreLabel.text = "Score: " + String(self.score)
         
         //save to coredata
+        saveQuestionAndAnswer(question: question, selectedAnswer: selectedAnswer)
+        
+    }
+}
+
+extension QuestionViewController {
+    func saveQuestionAndAnswer(question: Question, selectedAnswer: Answer) {
+        
+        guard let questionEntity = NSEntityDescription.entity(forEntityName: "Guesses", in: managedObjectContext) else { return }
+        
+        let guess = NSManagedObject(entity: questionEntity, insertInto: managedObjectContext)
+        
+        guess.setValue(question.title, forKey: "questionTitle")
+        guess.setValue(question.body?.htmlToString, forKey: "questionBody")
+        guess.setValue(selectedAnswer.body?.htmlToString, forKey: "questionAnswer")
+        
+        if question.acceptedAnswerID == selectedAnswer.answerID {
+            guess.setValue(true, forKey: "questionAnswerCorrect")
+        } else {
+            guess.setValue(false, forKey: "questionAnswerCorrect")
+        }
+        
+        
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Could not save question \(error), \(error.userInfo)")
+        }
+        
         
     }
 }
