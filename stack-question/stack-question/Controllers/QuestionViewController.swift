@@ -9,8 +9,11 @@
 import UIKit
 import Alamofire
 import Loaf
+import CoreData
 
 class QuestionViewController: UIViewController {
+    
+    var managedObjectContext: NSManagedObjectContext
     
     let reuseID = "reuseID"
     
@@ -102,6 +105,15 @@ class QuestionViewController: UIViewController {
         loadData()
     }
     
+    init(managedObjectContext : NSManagedObjectContext) {
+        self.managedObjectContext = managedObjectContext
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     @objc func loadData() {
         
         //set up search query, filter is baked in the API, see docs
@@ -126,7 +138,8 @@ class QuestionViewController: UIViewController {
             }
             
         }) { (error) in
-            Loaf.init("Sorry an error occured", sender: self).show()
+            self.refreshControl.endRefreshing()
+            Loaf.init("Sorry an error occured", state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
         }
     }
     
@@ -149,7 +162,7 @@ extension QuestionViewController: UITableViewDelegate, UITableViewDataSource {
 
         cell.delegate = self
         
-        //for convience, storing the current question with the button on the tag param
+        //for convience, storing the current question index with the button on the tag param
         cell.answersButton.tag = indexPath.row
         cell.selectionStyle = .none
         cell.titleLabel.text = question?.title?.htmlToString
@@ -167,25 +180,25 @@ extension QuestionViewController : LoadControllerProtocol {
     func loadAnswersController(sender: UIButton) {
         
         // current question is stored on the tag param when cell is loaded
-        let question = data?.items?[sender.tag]
-        
+        guard let question = data?.items?[sender.tag] else {
+            return
+        }
         
         //inject the controller and load
-        let controller = AnswerViewController()
-        controller.question = question
-        controller.delegate = self
+        let controller = AnswerViewController(question: question, delegate: self)
         navigationController?.pushViewController(controller, animated: true)
     }
 }
 
-extension QuestionViewController : UpdateScoreAndSaveProtocol {
-    func updateScoreAndSave(score: Int, question: Question, selectedAnswer: Answer) {
+extension QuestionViewController : UpdateScoreBoardAndSaveProtocol {
+    func updateScoreBoardAndSave(score: Int, question: Question, selectedAnswer: Answer) {
         
         //remove answered questions but kinda pointless because a reload could bring it back
         if let array = data?.items {
             if let offset = array.firstIndex(where: {$0.questionID == question.questionID}) {
                 data?.items?.remove(at: offset)
                 questionTableView.reloadData()
+                questionTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
             }
         }
 
@@ -194,6 +207,35 @@ extension QuestionViewController : UpdateScoreAndSaveProtocol {
         scoreLabel.text = "Score: " + String(self.score)
         
         //save to coredata
+        saveQuestionAndAnswer(question: question, selectedAnswer: selectedAnswer)
+        
+    }
+}
+
+extension QuestionViewController {
+    func saveQuestionAndAnswer(question: Question, selectedAnswer: Answer) {
+        
+        guard let questionEntity = NSEntityDescription.entity(forEntityName: "Guesses", in: managedObjectContext) else { return }
+        
+        let guess = NSManagedObject(entity: questionEntity, insertInto: managedObjectContext)
+        
+        guess.setValue(question.title, forKey: "questionTitle")
+        guess.setValue(question.body?.htmlToString, forKey: "questionBody")
+        guess.setValue(selectedAnswer.body?.htmlToString, forKey: "questionAnswer")
+        
+        if question.acceptedAnswerID == selectedAnswer.answerID {
+            guess.setValue(true, forKey: "questionAnswerCorrect")
+        } else {
+            guess.setValue(false, forKey: "questionAnswerCorrect")
+        }
+        
+        
+        do {
+            try managedObjectContext.save()
+        } catch let error as NSError {
+            print("Could not save question \(error), \(error.userInfo)")
+        }
+        
         
     }
 }

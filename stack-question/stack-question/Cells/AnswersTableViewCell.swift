@@ -96,7 +96,7 @@ class AnswerTableViewCell: UITableViewCell {
      }
     
     @objc func scoreAndSaveAnswer() {
-         if delegate?.responds(to: "scoreAndSaveAnswer") != nil {
+        if delegate?.responds(to: #selector(self.scoreAndSaveAnswer)) != nil {
             delegate?.scoreAndSaveAnswer(sender: answersButton)
         }
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol UpdateScoreAndSaveProtocol : NSObjectProtocol {
-    func updateScoreAndSave(score: Int, question: Question, selectedAnswer : Answer)
+protocol UpdateScoreBoardAndSaveProtocol : NSObjectProtocol {
+    func updateScoreBoardAndSave(score: Int, question: Question, selectedAnswer : Answer)
 }
 

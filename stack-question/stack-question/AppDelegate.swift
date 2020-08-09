@@ -19,11 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        let firstScreen = QuestionViewController()
-        navController = UINavigationController(rootViewController: firstScreen)
+        let context = self.persistentContainer.viewContext
+        
+        let firstScreen = CustomTabController(managedObjectContext: context)
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = navController
+        self.window?.rootViewController = firstScreen
         self.window?.makeKeyAndVisible()
         
         return true

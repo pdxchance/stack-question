@@ -11,7 +11,7 @@ import Loaf
 
 class AnswerViewController: UIViewController {
     
-    weak var delegate : UpdateScoreAndSaveProtocol?
+    weak var delegate : UpdateScoreBoardAndSaveProtocol?
     
     let reuseID = "reuseID"
 
@@ -23,7 +23,17 @@ class AnswerViewController: UIViewController {
         
         return answerTableView
     }()
-
+    
+    init(question: Question, delegate : UpdateScoreBoardAndSaveProtocol) {
+        self.question = question
+        self.delegate = delegate
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -69,38 +79,61 @@ extension AnswerViewController : UITableViewDelegate, UITableViewDataSource {
 
 extension AnswerViewController : ScoreAndSaveProtocol{
     @objc func scoreAndSaveAnswer(sender : UIButton) {
+        
+        // unwrap
+        guard let question = self.question else {
+            return
+        }
+        
+        guard let selectedAnswer =  question.answers?[sender.tag] else {
+            return
+        }
 
-        // compute the scord
-        var score : Int? = 0
+        // used to compute the score
+        var score = 0
         
         // guard against multiple answers
         answerTableView.isUserInteractionEnabled = false
         
+        //get indexPath for selected answer
+        let index = IndexPath(row: sender.tag, section: 0)
+        
         //verify the answer
-        let pickedAnswer = question?.answers?[sender.tag].answerID
-        let correctAnswer = question?.acceptedAnswerID
+        let pickedAnswer = question.answers?[index.row].answerID
+        let correctAnswer = question.acceptedAnswerID
+        
+        // find the correct answer
+        let answer = question.answers?.first(where: { (selected) -> Bool in
+            selected.answerID == correctAnswer
+        })
                 
+                        
         if pickedAnswer != correctAnswer {
             score = -1
             
-            Loaf.init("Sorry you guessed wrong :( ", state: .custom(.init(backgroundColor: UIColor.red)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short) { [weak self]  dismissalType in
-                self?.navigationController?.popViewController(animated: true)
+            let alert = UIAlertController(title: "Incorrect!\nAnswer Shown", message: answer?.body?.htmlToString, preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                self.navigationController?.popViewController(animated: true)
 
-                self?.delegate?.updateScoreAndSave(score: score!, question: (self?.question)!, selectedAnswer: (self?.question?.answers?[sender.tag])!)
-                }
+                self.delegate?.updateScoreBoardAndSave(score: score, question: question, selectedAnswer: selectedAnswer)
+            }
+            alert.addAction(alertAction)
+            present(alert, animated: true)
+            
         } else {
-            score = question?.answers?[sender.tag].score
+            let votes = question.answers?[sender.tag].score ?? 1
+            score = votes
 
-            Loaf.init("Good answer! You earned some points :)", state: .custom(.init(backgroundColor: UIColor.QuestionColorTheme.primaryDarkBlue)), location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show(.short){ [weak self] dismissalType in
-                
-                self?.navigationController?.popViewController(animated: true)
+            let alert = UIAlertController(title: "Correct!", message: "You scored some points!", preferredStyle: .alert)
+            let alertAction = UIAlertAction(title: "Ok", style: .default) { (action) in
+                self.navigationController?.popViewController(animated: true)
 
-                self?.delegate?.updateScoreAndSave(score: score!, question: (self?.question)!, selectedAnswer: (self?.question?.answers?[sender.tag])!)
+                self.delegate?.updateScoreBoardAndSave(score: score, question: question, selectedAnswer: selectedAnswer)
+            }
+            alert.addAction(alertAction)
+            present(alert, animated: true)
             
             }
         }
-    
-        
-        
     }
-}
+
