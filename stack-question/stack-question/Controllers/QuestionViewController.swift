@@ -8,7 +8,6 @@
 
 import UIKit
 import Alamofire
-import Loaf
 import CoreData
 
 class QuestionViewController: UIViewController {
@@ -144,7 +143,7 @@ class QuestionViewController: UIViewController {
             
         }) { (error) in
             self.refreshControl.endRefreshing()
-            Loaf.init("Sorry an error occured", state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+            print("Some error condition should be better handled")
         }
     }
     
