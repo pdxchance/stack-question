@@ -224,9 +224,9 @@ extension QuestionViewController {
         guess.setValue(selectedAnswer.body?.htmlToString, forKey: "questionAnswer")
         
         if question.acceptedAnswerID == selectedAnswer.answerID {
-            guess.setValue(true, forKey: "questionAnswerCorrect")
+            guess.setValue(NSNumber(booleanLiteral: true), forKey: "questionAnswerCorrect")
         } else {
-            guess.setValue(false, forKey: "questionAnswerCorrect")
+            guess.setValue(NSNumber(booleanLiteral: false), forKey: "questionAnswerCorrect")
         }
         
         

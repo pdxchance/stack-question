@@ -77,7 +77,14 @@ extension GuessesViewController {
                 let answer = data.value(forKey: "questionAnswer")
                 let answeredCorrectly = data.value(forKey: "questionAnswerCorrect")
                 
-                let node = GuessesModel(guessTitle: title as! String, guessBody: body as! String, guessAnswer: answer as! String, guessCorrect: (answeredCorrectly != nil))
+                var guess = false
+                if let answerGood = answeredCorrectly {
+                    if answerGood as! Int == 1 {
+                        guess = true
+                    }
+                }
+                
+                let node = GuessesModel(guessTitle: title as! String, guessBody: body as! String, guessAnswer: answer as! String, guessCorrect: guess)
                 
                 guesses.append(node)
             }
