@@ -13,6 +13,8 @@ import CoreData
 
 class QuestionViewController: UIViewController {
     
+    let defaultsUpdatedScoreTag = "Defaults.UpdateScoreTag"
+    
     var managedObjectContext: NSManagedObjectContext
     
     let reuseID = "reuseID"
@@ -100,6 +102,9 @@ class QuestionViewController: UIViewController {
         searchTextField.anchor(top: scoreLabel.bottomAnchor, bottom: nil, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
         questionTableView.anchor(top: searchTextField.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
+        
+        //get previously saved score
+        loadScore()
         
         //intial grab of data
         loadData()
@@ -203,8 +208,7 @@ extension QuestionViewController : UpdateScoreBoardAndSaveProtocol {
         }
 
         //update the score
-        self.score += score
-        scoreLabel.text = "Score: " + String(self.score)
+        updateScore(score : score)
         
         //save to coredata
         saveQuestionAndAnswer(question: question, selectedAnswer: selectedAnswer)
@@ -213,6 +217,19 @@ extension QuestionViewController : UpdateScoreBoardAndSaveProtocol {
 }
 
 extension QuestionViewController {
+    
+    func loadScore() {
+        let score = UserDefaults.standard.integer(forKey: defaultsUpdatedScoreTag)
+        self.score = score
+        scoreLabel.text = "Score: " + String(self.score)
+    }
+    
+    func updateScore(score: Int) {
+        self.score += score
+        scoreLabel.text = "Score: " + String(self.score)
+        
+        UserDefaults.standard.set(self.score, forKey: defaultsUpdatedScoreTag)
+    }
     func saveQuestionAndAnswer(question: Question, selectedAnswer: Answer) {
         
         guard let questionEntity = NSEntityDescription.entity(forEntityName: "Guesses", in: managedObjectContext) else { return }
