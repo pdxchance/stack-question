@@ -19,7 +19,7 @@ let searchFilter = "/search/advanced?site=stackoverflow&filter=!5-dmZUPQyv_-cPv(
 // simple API wrapper
 func requestGET(_ strURL: String, params: [String : Any]?, success:@escaping (Data) -> Void, failure:@escaping (Error) -> Void) {
     
-    AF.request(strURL, parameters: params).validate().responseJSON { (responseObject) -> Void in
+    Alamofire.request(strURL, parameters: params).validate().responseJSON { (responseObject) -> Void in
 
         switch(responseObject.result) {
             case .success:

@@ -155,7 +155,7 @@ class QuestionViewController: UIViewController {
 
 extension QuestionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        data?.items?.count ?? 0
+       return data?.items?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
