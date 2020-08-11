@@ -8,10 +8,11 @@
 
 import UIKit
 import Alamofire
-import Loaf
 import CoreData
 
 class QuestionViewController: UIViewController {
+    
+    let defaultsUpdatedScoreTag = "Defaults.UpdateScoreTag"
     
     var managedObjectContext: NSManagedObjectContext
     
@@ -101,6 +102,9 @@ class QuestionViewController: UIViewController {
         
         questionTableView.anchor(top: searchTextField.bottomAnchor, bottom: view.bottomAnchor, leading: view.leadingAnchor, trailing: view.trailingAnchor)
         
+        //get previously saved score
+        loadScore()
+        
         //intial grab of data
         loadData()
     }
@@ -139,7 +143,7 @@ class QuestionViewController: UIViewController {
             
         }) { (error) in
             self.refreshControl.endRefreshing()
-            Loaf.init("Sorry an error occured", state: .error, location: .top, presentingDirection: .vertical, dismissingDirection: .vertical, sender: self).show()
+            print("Some error condition should be better handled")
         }
     }
     
@@ -179,7 +183,7 @@ extension QuestionViewController: UITableViewDelegate, UITableViewDataSource {
 extension QuestionViewController : LoadControllerProtocol {
     func loadAnswersController(sender: UIButton) {
         
-        // current question is stored on the tag param when cell is loaded
+        // current question index is stored on the tag param when cell is loaded
         guard let question = data?.items?[sender.tag] else {
             return
         }
@@ -203,8 +207,7 @@ extension QuestionViewController : UpdateScoreBoardAndSaveProtocol {
         }
 
         //update the score
-        self.score += score
-        scoreLabel.text = "Score: " + String(self.score)
+        updateScore(score : score)
         
         //save to coredata
         saveQuestionAndAnswer(question: question, selectedAnswer: selectedAnswer)
@@ -213,20 +216,34 @@ extension QuestionViewController : UpdateScoreBoardAndSaveProtocol {
 }
 
 extension QuestionViewController {
+    
+    func loadScore() {
+        let score = UserDefaults.standard.integer(forKey: defaultsUpdatedScoreTag)
+        self.score = score
+        scoreLabel.text = "Score: " + String(self.score)
+    }
+    
+    func updateScore(score: Int) {
+        self.score += score
+        scoreLabel.text = "Score: " + String(self.score)
+        
+        UserDefaults.standard.set(self.score, forKey: defaultsUpdatedScoreTag)
+    }
+    
     func saveQuestionAndAnswer(question: Question, selectedAnswer: Answer) {
         
         guard let questionEntity = NSEntityDescription.entity(forEntityName: "Guesses", in: managedObjectContext) else { return }
         
         let guess = NSManagedObject(entity: questionEntity, insertInto: managedObjectContext)
         
-        guess.setValue(question.title, forKey: "questionTitle")
+        guess.setValue(question.title?.htmlToString, forKey: "questionTitle")
         guess.setValue(question.body?.htmlToString, forKey: "questionBody")
         guess.setValue(selectedAnswer.body?.htmlToString, forKey: "questionAnswer")
         
         if question.acceptedAnswerID == selectedAnswer.answerID {
-            guess.setValue(true, forKey: "questionAnswerCorrect")
+            guess.setValue(NSNumber(booleanLiteral: true), forKey: "questionAnswerCorrect")
         } else {
-            guess.setValue(false, forKey: "questionAnswerCorrect")
+            guess.setValue(NSNumber(booleanLiteral: false), forKey: "questionAnswerCorrect")
         }
         
         
